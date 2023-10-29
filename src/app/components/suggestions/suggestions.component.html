@@ -1,0 +1,10 @@
+<div class="w-[90%] mx-auto my-5 p-2" *ngFor="let category of categories; index as i">
+    <h1 class="mb-3 text-3xl">Showing items from {{category}} </h1>
+    <ngx-slick-carousel class="carousel  flex justify-center items-center" [config]="slideConfig">
+        <div ngxSlickItem *ngFor="let product of products[i]" class="slide">
+            <app-product-card [product]="product" />
+        </div>
+
+    </ngx-slick-carousel>
+
+</div>

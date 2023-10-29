@@ -1,0 +1,53 @@
+<app-back-arrow />
+<ng-container *ngFor="let order of orders">
+    <div class="w-5/6 mx-auto mb-5 p-3 border-t-2">
+        <div class="flex justify-end">
+            <p class="text-lg">
+                {{order.date}}
+            </p>
+        </div>
+        <mat-divider />
+        <ng-container *ngFor="let prodObj of order.products">
+            <mat-card class="mb-2">
+                <mat-card-content class="grid grid-cols-4 grid-rows-4 gap-2">
+                    <div class="col-span-1 row-span-4 border-e-2 flex justify-center">
+                        <img class="h-[250px] object-center" [src]="prodObj.product?.image" />
+                    </div>
+                    <div class="col-span-3 row-span-3 p-2">
+                        <mat-card-title [routerLink]="['/product',prodObj.productId]" class="cursor-pointer">
+                            {{prodObj.product?.title}}
+                        </mat-card-title>
+                        <mat-card-subtitle>
+                            {{prodObj.product?.category}}
+                        </mat-card-subtitle>
+                        <p class="text-4xl font-semibold  m-5">
+                            &#8377; {{prodObj.product?.price}}
+                        </p>
+                        <p>
+                            {{prodObj.product?.description}}
+                        </p>
+                    </div>
+
+                    <mat-card-actions class="col-span-3 row-span-1 p-2 flex justify-around items-center border-t-2">
+                        <p class="text-lg font-semibold">
+                            Quantity:
+                            {{prodObj.quantity}}
+                        </p>
+                        <p *ngIf="prodObj.product?.price !== undefined" class="text-lg font-semibold">
+                            Total Amount: &#8377;{{ prodObj.product?.price! * prodObj.quantity }}
+                        </p>
+                        <button mat-stroked-button color="warn"
+                            (click)="onRemove(order.id,prodObj.productId)"><mat-icon>delete</mat-icon> Remove</button>
+                    </mat-card-actions>
+                </mat-card-content>
+            </mat-card>
+        </ng-container>
+
+    </div>
+
+</ng-container>
+<ng-container *ngIf="orders.length===0">
+    <p class="ms-10 mt-5 text-2xl">
+        Nothing to show
+    </p>
+</ng-container>

@@ -1,0 +1,264 @@
+<!-- FakeStore Angular Application Documentation -->
+<div class="container mx-auto p-6">
+
+    <h1 class="text-4xl font-bold mb-4">FakeStoreClient Angular Application Documentation</h1>
+
+    <!-- Overview -->
+    <div class="mb-8">
+        <h2 class="text-2xl font-bold mb-2">Overview</h2>
+        <p class="text-lg mb-4">
+            This Angular application is designed to interact with the <a href="https://fakestoreapi.com/"
+                target="_blank"><b>FakeStore
+                    API</b></a>, which provides a simulated online
+            store environment. It's important to note that the entire application is virtual and no actual database
+            operations are being performed. The purpose of this application is for testing and development, allowing
+            users to work with realistic e-commerce data without the need for a real backend. Before you start must read
+            the <a href="https://fakestoreapi.com/docs" target="_blank"><b>Docs</b></a>
+        </p>
+    </div>
+
+    <!-- Important Note Section -->
+    <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-8">
+        <h2 class="text-xl font-bold mb-2">Important Note</h2>
+        <p class="mb-4">
+            This application is designed as a virtual representation of an e-commerce store and is intended for testing
+            and development purposes only. Please be aware of the following key points:
+        </p>
+        <ul class="list-disc pl-4 mb-4">
+            <li>All operations within this application, including adding to cart, creating users, and any create,
+                update, or
+                delete actions, are entirely virtual.</li>
+            <li>No data is uploaded or stored in a real database. Each time you refresh or reload the website, you will
+                receive the same results.</li>
+            <li>Some features, such as purchasing products or leaving ratings, have not been implemented due to the
+                virtual
+                nature of this application.</li>
+        </ul>
+        <p>
+            We hope you find this application helpful for testing and development purposes. If you have any questions or
+            feedback, please feel free to reach out to us.
+        </p>
+    </div>
+
+    <!-- User Credentials -->
+    <div class="mb-8">
+        <h2 class="text-2xl font-bold mb-2">User Credentials</h2>
+
+        <p class="text-lg mb-4">
+            To access the functionalities of this application, you can use the following user credentials provided by
+            the
+            FakeStore API:
+        </p>
+
+        <div class="flex flex-wrap -mx-4">
+            <div class="w-1/2 p-4" *ngFor="let user of users">
+                <div class="p-4 bg-gray-100 rounded">
+                    <h3 class="text-xl font-bold mb-2">
+                        {{user.name?.firstname+' '+user.name?.lastname}}
+                    </h3>
+                    <p><strong>Username:</strong>
+                        {{user.username}}
+                    </p>
+                    <p><strong>Password:</strong>
+                        {{user.password}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Application Structure -->
+    <div class="mb-8">
+        <h2 class="text-2xl font-bold mb-2">Application Structure</h2>
+
+        <!-- Components -->
+        <div class="mb-4">
+            <h3 class="text-xl font-bold mb-2">Components</h3>
+            <ul class="list-disc pl-4">
+                <li class="mb-2">
+                    <strong>Banner:</strong> Displays banner posters, commonly used for advertisements.
+                </li>
+                <li class="mb-2">
+                    <strong>Back Arrow:</strong> Provides a navigational back arrow for improved user experience.
+                </li>
+                <li class="mb-2">
+                    <strong>Navbar:</strong> The navigation bar that allows users to easily navigate through the
+                    application.
+                </li>
+                <li class="mb-2">
+                    <strong>Product Card:</strong> Represents a product with its relevant details like title, category,
+                    and
+                    price.
+                </li>
+                <li class="mb-2">
+                    <strong>Profile:</strong> Displays user profile information and options for account management.
+                </li>
+                <li class="mb-2">
+                    <strong>Snackbar:</strong> Provides non-intrusive notifications to the user for actions or updates.
+                </li>
+                <li>
+                    <strong>Suggestions:</strong> Offers product suggestions to enhance user engagement and exploration.
+                </li>
+            </ul>
+        </div>
+
+        <!-- Services -->
+        <div class="mb-4">
+            <h3 class="text-xl font-bold mb-2">Services</h3>
+            <ul class="list-disc pl-4">
+                <li class="mb-2">
+                    <strong>AuthService:</strong> Responsible for managing user authentication and providing functions
+                    for
+                    login, logout, and user information retrieval.
+                </li>
+                <li>
+                    <strong>ProductService:</strong> Handles interactions with the FakeStore API for product-related
+                    operations,
+                    such as retrieving products by category, fetching categories, and managing user carts.
+                </li>
+            </ul>
+        </div>
+
+        <!-- Routing -->
+        <div class="mb-4">
+            <h3 class="text-xl font-bold mb-2">Routing</h3>
+            <ul class="list-disc pl-4">
+                <li class="mb-2">
+                    <strong>Home:</strong> Displays the banner and product suggestions.
+                </li>
+                <li class="mb-2">
+                    <strong>Login:</strong> Provides a login interface for users.
+                </li>
+                <li class="mb-2">
+                    <strong>Product Details:</strong> Shows detailed information about a specific product.
+                </li>
+                <li class="mb-2">
+                    <strong>Category:</strong> Displays a list of products belonging to a specific category.
+                </li>
+                <li class="mb-2">
+                    <strong>Cart:</strong> Shows the user's shopping cart.
+                </li>
+                <li>
+                    <strong>Documentation:</strong> Provides detailed documentation about the application.
+                </li>
+                <!-- Add more routes here -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Functionality -->
+    <div class="mb-8">
+        <h2 class="text-2xl font-bold mb-2">Functionality</h2>
+
+        <!-- Products -->
+        <div class="mb-4">
+            <h3 class="text-xl font-bold mb-2">Products</h3>
+            <ul class="list-disc pl-4">
+                <li>Users can view a list of available products.</li>
+                <li>Clicking on a product will display detailed information.</li>
+            </ul>
+        </div>
+
+        <!-- Categories -->
+        <div class="mb-4">
+            <h3 class="text-xl font-bold mb-2">Categories</h3>
+            <ul class="list-disc pl-4">
+                <li>Users can browse products by category.</li>
+                <li>Clicking on a category will filter the product list accordingly.</li>
+            </ul>
+        </div>
+
+        <!-- User Authentication -->
+        <div class="mb-4">
+            <h3 class="text-xl font-bold mb-2">User Authentication</h3>
+            <ul class="list-disc pl-4">
+                <li>Users can log in to their accounts.</li>
+                <li>Upon successful login, the user's authentication token is stored locally.</li>
+            </ul>
+        </div>
+
+    </div>
+    <!-- Developer's Message -->
+    <div class="mb-8">
+        <h2 class="text-2xl font-bold mb-2">Developer's Message</h2>
+
+        <p class="text-lg mb-4">
+            Thank you for exploring the FakeStoreClient Angular Application! This application is designed to provide a
+            virtual e-commerce experience for testing and development purposes. Feel free to interact with the products,
+            categories, and user authentication features.
+        </p>
+
+        <p class="text-lg mb-4">
+            Please note that this application is not connected to a real database. Any actions you perform, such as
+            adding
+            items to the cart or creating users, are entirely virtual. Upon page reload, you will receive the same
+            initial state.
+        </p>
+
+        <p class="text-lg mb-4">
+            I'll be actively working on this application, making improvements and adding new features. You can track the
+            progress on my GitHub repository linked below. Feel free to contribute or provide feedback!
+        </p>
+    </div>
+
+    <!-- Developer's Message -->
+    <div class="mb-8">
+        <h2 class="text-2xl font-bold mb-2">Developer's Message</h2>
+
+        <p class="text-lg mb-4">
+            Thank you for exploring the FakeStoreClient Angular Application! This application is designed to provide a
+            virtual e-commerce experience for testing and development purposes. Feel free to interact with the products,
+            categories, and user authentication features.
+        </p>
+
+        <p class="text-lg mb-4">
+            Please note that this application is not connected to a real database. Any actions you perform, such as
+            adding
+            items to the cart or creating users, are entirely virtual. Upon page reload, you will receive the same
+            initial state.
+        </p>
+
+        <p class="text-lg mb-4">
+            I'll be actively working on this application, making improvements and adding new features. You can track the
+            progress on my GitHub repository linked below. Feel free to contribute or provide feedback!
+        </p>
+    </div>
+
+    <!-- Social Accounts -->
+    <div class="mb-8">
+        <h2 class="text-2xl font-bold mb-2">Connect with Me</h2>
+
+        <!-- Social Icons -->
+        <div class="flex space-x-4 mb-4">
+            <a href="https://www.facebook.com/abhisek.mohanty.79069/" target="_blank">
+                <img src="assets/facebook.png" alt="Facebook" class="w-8 h-8">
+            </a>
+            <a href="https://whatsapp.com/channel/0029VaAVvaI47Xe2n0qP481G" target="_blank">
+                <img src="assets/whatsapp.ico" alt="WhatsApp" class="w-8 h-8">
+            </a>
+            <a href="https://www.linkedin.com/in/abhisek-mohanty-3a2241235/" target="_blank">
+                <img src="assets/linkedin.png" alt="LinkedIn" class="w-8 h-8">
+            </a>
+            <a href="https://github.com/abhisekmohantychinuhttps://whatsapp.com/channel/0029VaAVvaI47Xe2n0qP481G"
+                target="_blank">
+                <img src="assets/github.png" alt="GitHub" class="w-8 h-8">
+            </a>
+        </div>
+
+        <!-- Profile Links -->
+        <div class="flex space-x-4">
+            <a href="https://www.facebook.com/abhisek.mohanty.79069/" target="_blank"
+                class="text-blue-500 underline">Facebook</a>
+            <a href="https://whatsapp.com/channel/0029VaAVvaI47Xe2n0qP481G" target="_blank"
+                class="text-green-500 underline">WhatsApp</a>
+            <a href="https://www.linkedin.com/in/abhisek-mohanty-3a2241235/" target="_blank"
+                class="text-indigo-500 underline">LinkedIn</a>
+            <a href="https://github.com/abhisekmohantychinuhttps://whatsapp.com/channel/0029VaAVvaI47Xe2n0qP481G"
+                target="_blank" class="text-black underline">GitHub</a>
+        </div>
+    </div>
+
+
+</div>

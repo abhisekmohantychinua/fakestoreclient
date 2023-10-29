@@ -1,0 +1,25 @@
+<div class="container mx-auto">
+    <mat-card class="w-1/2 mx-auto">
+        <mat-card-header>
+            <mat-card-title class="text-3xl m-2">Login</mat-card-title>
+        </mat-card-header>
+        <mat-divider />
+        <mat-card-content>
+            <form class="flex flex-col items-center justify-center mt-5" (submit)="onSubmit()">
+                <mat-form-field class="w-full">
+                    <mat-label>Username</mat-label>
+                    <input type="text" [(ngModel)]="credentials.username" name="username" matInput>
+                </mat-form-field>
+                <mat-form-field class="w-full">
+                    <mat-label>Password</mat-label>
+                    <input type="password" [(ngModel)]="credentials.password" name="password" matInput>
+                </mat-form-field>
+                <mat-card-actions class="space-x-5">
+                    <button mat-raised-button color="primary" type="submit">Login</button>
+                    <button mat-stroked-button color="accent" type="reset">Reset</button>
+                </mat-card-actions>
+
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

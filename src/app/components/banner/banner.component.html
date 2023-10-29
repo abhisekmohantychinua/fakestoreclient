@@ -1,0 +1,7 @@
+<div class="w-full h-[60%]">
+    <ngx-slick-carousel class="carousel w-full border-2" #slickModal="slick-carousel" [config]="slideConfig">
+        <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+            <img src="{{ slide }}" alt="" class="w-full h-[450px]">
+        </div>
+    </ngx-slick-carousel>
+</div>

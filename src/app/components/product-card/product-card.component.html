@@ -1,0 +1,10 @@
+<mat-card class="m-3 w-[300px] h-[480px] cursor-pointer hover:-translate-y-2" (click)="openProduct()">
+    <mat-card-content class="p-2">
+        <img [src]="product?.image" alt="" class="h-[350px] object-center">
+    </mat-card-content>
+    <mat-divider />
+    <mat-card-footer class="p-2">
+        <mat-card-title> &#8377; {{product?.price}}</mat-card-title>
+        <mat-card-subtitle class="hover:underline">{{product?.title}}</mat-card-subtitle>
+    </mat-card-footer>
+</mat-card>

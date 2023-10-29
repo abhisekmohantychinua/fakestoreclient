@@ -1,0 +1,39 @@
+<mat-card class="px-5 pb-5 pt-1">
+    <div class="w-full flex justify-end">
+        <mat-icon class="cursor-pointer" mat-dialog-close>close</mat-icon>
+    </div>
+    <mat-card-header>
+        <mat-icon matCardAvatar>
+            {{user?.name?.firstname?.toUpperCase()}}
+        </mat-icon>
+        <mat-card-title class="text-xl font-bold">{{ user?.name?.firstname }} {{ user?.name?.lastname}}</mat-card-title>
+        <mat-card-subtitle class="text-gray-500">{{ user?.username }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-list class="mt-4">
+            <mat-list-item class="text-gray-600">
+                <mat-icon matListItemIcon>mail</mat-icon>
+                {{ user?.email }}
+            </mat-list-item>
+            <mat-list-item class="text-gray-600">
+                <mat-icon matListItemIcon>call</mat-icon>
+                {{ user?.phone }}
+            </mat-list-item>
+            <mat-list-item class="text-gray-600">
+                <mat-icon matListItemIcon>home</mat-icon>
+                {{ user?.address?.city }}, {{ user?.address?.street }}, {{ user?.address?.zipcode }}
+            </mat-list-item>
+        </mat-list>
+        <mat-card-actions>
+            <a [href]="'https://www.google.com/maps?q='+user?.address?.geolocation?.lat+','+user?.address?.geolocation?.long"
+                mat-raised-button target="_blank" color="accent">
+                <mat-icon>location_on</mat-icon>
+                view in map
+            </a>
+        </mat-card-actions>
+    </mat-card-content>
+
+
+
+
+</mat-card>
