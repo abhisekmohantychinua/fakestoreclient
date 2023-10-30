@@ -1,55 +1,107 @@
-<mat-toolbar color="primary" class="flex flex-row">
-
-    <mat-toolbar-row>
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" routerLink="/">
+<mat-toolbar color="primary">
+    <mat-toolbar-row class="flex flex-wrap sm:flex-row">
+        <!-- logo and icon  -->
+        <button mat-icon-button class="" aria-label="Example icon-button with menu icon" routerLink="/">
             <img src="./favicon.ico" alt="">
         </button>
         <span>FakeStore</span>
         <span class="example-spacer"></span>
+        <ng-container *ngIf="isMobile">
 
-
-        <button mat-mini-fab class="translate-x-[41px] bg-white"><mat-icon>search</mat-icon></button>
-        <input type="text" name="query" id=""
-            class="w-72 outline-none bg-transparent text-white rounded-full border-2 border-white font-normal h-10 ps-[45px] text-base"
-            placeholder="Search">
-        <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon"
-            [matMenuTriggerFor]="category" (click)="loadCategory()">
-            <mat-icon>category</mat-icon>
-        </button>
-        <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon"
-            routerLink="/docs">
-            <mat-icon>import_contacts</mat-icon>
-        </button>
-
-        <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon"
-            routerLink="../cart">
-            <mat-icon>shopping_cart</mat-icon>
-        </button>
-        <ng-container *ngIf="isLoggedIn; else login">
-            <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
-                (click)="openProfile()">
-                <mat-icon>account_circle</mat-icon>
+            <button mat-icon-button class=" favorite-icon" aria-label="Example icon-button with heart icon"
+                [matMenuTriggerFor]="navMenu">
+                <mat-icon>menu</mat-icon>
             </button>
-            <button mat-icon-button (click)="logoutUser()" class="example-icon"
-                aria-label="Example icon-button with share icon">
-                <mat-icon>logout</mat-icon>
-            </button>
+            <mat-menu #navMenu="matMenu">
+
+                <button mat-menu-item [matMenuTriggerFor]="category" (click)="loadCategory()">
+                    <mat-icon>category</mat-icon>
+                    Category
+                </button>
+                <button mat-menu-item routerLink="/docs">
+                    <mat-icon matListItemIcon>import_contacts</mat-icon>
+                    Documentation
+                </button>
+                <button mat-menu-item routerLink="/cart">
+                    <mat-icon matListItemIcon>shopping_cart</mat-icon>
+                    Cart
+                </button>
+                <ng-container *ngIf="isLoggedIn">
+                    <button mat-menu-item (click)="openProfile()">
+                        <mat-icon matListItemIcon>account_circle</mat-icon>
+                        Profile
+                    </button>
+                    <button mat-menu-item (click)="logoutUser()">
+                        <mat-icon matListItemIcon>logout</mat-icon>
+                        Logout
+                    </button>
+                </ng-container>
+                <ng-container *ngIf="!isLoggedIn">
+                    <button mat-menu-item [matMenuTriggerFor]="profile">
+                        <mat-icon matListItemIcon>account_circle</mat-icon>
+                        Profile
+                    </button>
+                    <button mat-menu-item routerLink="/login">
+                        <mat-icon matListItemIcon>login</mat-icon>
+                        Login
+                    </button>
+                </ng-container>
+            </mat-menu>
+
         </ng-container>
-        <ng-template #login>
-            <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"
-                [matMenuTriggerFor]="profile">
-                <mat-icon>account_circle</mat-icon>
+
+
+        <ng-container *ngIf="!isMobile">
+
+            <!-- search and navigation items  -->
+            <button mat-mini-fab class="translate-x-[41px] bg-white hidden md:block">
+                <mat-icon class="text-3xl">search</mat-icon>
             </button>
-            <button mat-flat-button class="example-icon" aria-label="Example icon-button with share icon"
-                routerLink="/login">
-                <mat-icon>login</mat-icon>
-                Login
+            <input type="text" name="query" id=""
+                class="w-72 outline-none bg-transparent text-white rounded-full border-2 border-white font-normal h-10 ps-[45px] text-base hidden md:block"
+                placeholder="Search">
+            <button mat-icon-button class=" favorite-icon " aria-label="Example icon-button with heart icon"
+                [matMenuTriggerFor]="category" (click)="loadCategory()">
+                <mat-icon>category</mat-icon>
             </button>
-        </ng-template>
+            <button mat-icon-button class=" favorite-icon " aria-label="Example icon-button with heart icon"
+                routerLink="/docs">
+                <mat-icon>import_contacts</mat-icon>
+            </button>
+
+            <button mat-icon-button class="favorite-icon " aria-label="Example icon-button with heart icon"
+                routerLink="../cart">
+                <mat-icon>shopping_cart</mat-icon>
+            </button>
+
+
+            <ng-container *ngIf="isLoggedIn;">
+                <button mat-icon-button class="" aria-label="Example icon-button with share icon"
+                    (click)="openProfile()">
+                    <mat-icon>account_circle</mat-icon>
+                </button>
+                <button mat-icon-button (click)="logoutUser()" class=" "
+                    aria-label="Example icon-button with share icon">
+                    <mat-icon>logout</mat-icon>
+                </button>
+            </ng-container>
+
+            <ng-container *ngIf="!isLoggedIn;">
+                <button mat-icon-button aria-label="Example icon-button with share icon" [matMenuTriggerFor]="profile">
+                    <mat-icon>account_circle</mat-icon>
+                </button>
+                <button mat-flat-button aria-label="Example icon-button with share icon" routerLink="/login">
+                    <mat-icon>login</mat-icon>
+                    Login
+                </button>
+            </ng-container>
+
+        </ng-container>
 
     </mat-toolbar-row>
 </mat-toolbar>
 <mat-menu #category="matMenu">
+
     <mat-action-list>
         <button mat-list-item *ngFor="let category of categories" [routerLink]="['..','category',category]">
             <mat-icon matListItemIcon>category</mat-icon>
@@ -61,8 +113,8 @@
 
     <div class="container mx-auto p-4 flex flex-col justify-center">
         <h1>Login to see your profile</h1>
-        <button mat-flat-button class="example-icon" aria-label="Example icon-button with share icon"
-            routerLink="/login" color="accent">
+        <button mat-flat-button class="" aria-label="Example icon-button with share icon" routerLink="/login"
+            color="accent">
             <mat-icon>login</mat-icon>
             Login
         </button>

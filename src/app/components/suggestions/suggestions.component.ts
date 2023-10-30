@@ -18,6 +18,50 @@ export class SuggestionsComponent implements OnInit {
     slidesToShow: 4,
     slidesToScroll: 1,
     arrows: true,
+    responsive: [
+      {
+        breakpoint: 1300,
+        settings: {
+          slidesToShow: 3.5,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 2.4,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 890,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 740,
+        settings: {
+          slidesToShow: 1.5,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 580,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
     prevArrow:
       '<button><span class="material-symbols-outlined">navigate_before</span></button>',
     nextArrow: `<button><span class="material-symbols-outlined">navigate_next</span></button>`,
@@ -51,5 +95,12 @@ export class SuggestionsComponent implements OnInit {
         this._snack.openSnackBar("Couldn't load caegories", 'Ok');
       },
     });
+  }
+  slickInit(e: any) {
+    console.log('slick initialized');
+  }
+
+  breakpoint(e: any) {
+    console.log('breakpoint');
   }
 }

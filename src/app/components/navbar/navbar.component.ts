@@ -4,6 +4,7 @@ import { SnackbarComponent } from '../snackbar/snackbar.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileComponent } from '../profile/profile.component';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-navbar',
@@ -13,13 +14,21 @@ import { ProfileComponent } from '../profile/profile.component';
 export class NavbarComponent implements OnInit {
   categories: Array<string> = [];
   isLoggedIn: boolean = false;
+  isMobile: boolean = false;
   constructor(
     private authService: AuthService,
     private productService: ProductService,
     private _snack: SnackbarComponent,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private breakPointService: BreakpointObserver
   ) {}
   ngOnInit(): void {
+    this.breakPointService.observe(Breakpoints.XSmall).subscribe((result) => {
+      this.isMobile = false;
+      if (result.matches) {
+        this.isMobile = true;
+      }
+    });
     this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
     });

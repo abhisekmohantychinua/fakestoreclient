@@ -1,6 +1,6 @@
 <app-back-arrow />
 <ng-container *ngFor="let order of orders">
-    <div class="w-5/6 mx-auto mb-5 p-3 border-t-2">
+    <div class="md:w-5/6 mx-auto mb-5 p-3 border-t-2">
         <div class="flex justify-end">
             <p class="text-lg">
                 {{order.date}}
@@ -9,11 +9,11 @@
         <mat-divider />
         <ng-container *ngFor="let prodObj of order.products">
             <mat-card class="mb-2">
-                <mat-card-content class="grid grid-cols-4 grid-rows-4 gap-2">
-                    <div class="col-span-1 row-span-4 border-e-2 flex justify-center">
+                <mat-card-content class="grid md:grid-cols-4 grid-rows-6 md:grid-rows-4 gap-2">
+                    <div class="row-span-3 md:col-span-1 md:row-span-4 md:border-e-2 border-b-2 flex justify-center">
                         <img class="h-[250px] object-center" [src]="prodObj.product?.image" />
                     </div>
-                    <div class="col-span-3 row-span-3 p-2">
+                    <div class=" row-span-2 md:col-span-3 md:row-span-3 p-2">
                         <mat-card-title [routerLink]="['/product',prodObj.productId]" class="cursor-pointer">
                             {{prodObj.product?.title}}
                         </mat-card-title>
@@ -28,12 +28,13 @@
                         </p>
                     </div>
 
-                    <mat-card-actions class="col-span-3 row-span-1 p-2 flex justify-around items-center border-t-2">
-                        <p class="text-lg font-semibold">
+                    <mat-card-actions
+                        class="row-span-1 md:col-span-3 md:row-span-1 p-2 flex justify-around items-center border-t-2">
+                        <p class="md:text-lg font-semibold">
                             Quantity:
                             {{prodObj.quantity}}
                         </p>
-                        <p *ngIf="prodObj.product?.price !== undefined" class="text-lg font-semibold">
+                        <p *ngIf="prodObj.product?.price !== undefined" class="md:text-lg font-semibold">
                             Total Amount: &#8377;{{ prodObj.product?.price! * prodObj.quantity }}
                         </p>
                         <button mat-stroked-button color="warn"
